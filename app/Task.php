@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Task extends Model
 {
@@ -10,12 +11,12 @@ class Task extends Model
     const STATUS = [
         1 => ['label' => '未着手', 'class' => 'label-danger'],
         2 => ['label' => '着手中', 'class' => 'label-info'],
-        3 => ['label' => '完了', 'class' => 'label-success'],
+        3 => ['label' => '完了', 'class' => 'label'],
     ];
     
     // アクセサ（モデルクラスのプロパティのように参照できる） get○○○Atributeの○○○で取得
     // 状態を表すHTMLクラス
-    public function getStatusClassAttributes()
+    public function getStatusClassAttribute()
     {
         // 状態値
         $status = $this->attributes['status'];
@@ -41,4 +42,10 @@ class Task extends Model
         
         return self::STATUS[$status]['label'];
     }
+    
+    public function getFormattedDueDateAttribute()
+    {
+        return Carbon::createFromFormat('Y-m-d', $this->attributes['due_date'])->format('Y/m/d');
+    }
+    
 }

@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta httpequiv="XUACompatible" content="ie=edge">
-    <title>ToDoApp</title>
+    <title>ToDo App</title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
 <header>
-    <nav class="mynavbar">
-        <a class="mynavbarbrand"href="/">ToDoApp</a>
+    <nav class="my-navbar">
+        <a class="my-navbar-brand" href="/">ToDoApp</a>
     </nav>
 </header>
 
@@ -61,7 +61,7 @@
                                 <td>
                                     <span class="label {{ $task->status_class }}">{{ $task->status_label }}</span>
                                 </td>
-                                <td>{{ $task->due_date }}</td>
+                                <td>{{ $task->formatted_due_date }}</td>
                                 <td><a href="#">編集</a></td>
                             </tr>
                         @endforeach
