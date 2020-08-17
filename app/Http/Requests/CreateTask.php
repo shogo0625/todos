@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateFolder extends FormRequest
+class CreateTask extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,6 @@ class CreateFolder extends FormRequest
      */
     public function authorize()
     {
-        // デフォルトはfalse
         return true;
     }
 
@@ -25,15 +24,25 @@ class CreateFolder extends FormRequest
     public function rules()
     {
         return [
-            // 必須入力 | 最大文字
-            'title' => 'required | max:20',
+            // バリデーション
+            'title' => 'required | max:100',
+            'due_date' => 'required | date | after_or_equal:today',
+            
         ];
     }
-    // 日本語化のため
+    
     public function attributes()
     {
         return [
-            'title' => 'フォルダ名',
+            'title' => 'タイトル',
+            'due_date' => '期限日',
+        ];
+    }
+    
+    public function messages()
+    {
+        return [
+            'due_date.after_or_equal' => ':attribute には今日以降の日付を入力してください。',
         ];
     }
 }

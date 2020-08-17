@@ -42,6 +42,13 @@ return [
             'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
+        
+        // PHPUnitテスト用のデータベース設定
+        'sqlite_testing' => [
+            'driver' => 'sqlite',
+            'database' => ':memory:',
+            'prefix' => '',
+        ],
 
         'mysql' => [
             'driver' => 'mysql',
