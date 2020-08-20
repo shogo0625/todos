@@ -24,3 +24,8 @@ Route::post('/folders/{id}/tasks/create', 'TaskController@create');
 
 Route::get('/folders/{id}/tasks/{task_id}/edit', 'TaskController@showEditForm')->name('tasks.edit');
 Route::post('/folders/{id}/tasks/{task_id}/edit', 'TaskController@edit');
+
+Route::get('/', 'HomeController@index')->name('home');
+// 会員登録・ログイン・ログアウト・パスワード再設定のルーティング定義
+Auth::routes();
+
