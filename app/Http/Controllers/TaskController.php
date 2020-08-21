@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 // バリデーション設定クラス読み込み
 use App\Http\Requests\CreateTask;
 use App\Http\Requests\EditTask;
+// Authクラスをインポートする
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -15,7 +17,7 @@ class TaskController extends Controller
     public function index(int $id)
     {
         // 対象モデルのallクラスメソッドで取得
-        $folders = Folder::all();
+        $folders = Auth::user()->folders()->get();
         // 選ばれたフォルダを取得
         $current_folder = Folder::find($id);
         // 選べれたフォルダに紐付いたタスクを取得

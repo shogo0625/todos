@@ -38,6 +38,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
+        // controllerのコンストラクタでミドルウェアを適用（Routingでも可）
         $this->middleware('guest');
     }
 
